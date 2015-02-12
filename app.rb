@@ -26,11 +26,13 @@ end
 
 # GET /users/new - display a form for making a new user
 get '/users/new' do
+  @users = users
   erb :new
 end
 
 # POST /users - create a user based on params from form
 post '/users' do
+  @users = users
   id += 1
   users.push first: params[:first], last: params[:last]
   redirect to '/'
@@ -50,6 +52,7 @@ end
 # DELETE /users/:id - delete a user by their id
 
 delete '/users/:id' do
+  @users = users
   users.delete_if { |user| user[:id] == params[:id]}
   redirect '/'
 end
